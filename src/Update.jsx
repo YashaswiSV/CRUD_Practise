@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
 
 
 
@@ -19,19 +20,19 @@ const Update=()=>{
         }
         useEffect(()=>{
           loadData();
-        })
+        },[])
 
         const dele=(myid)=>{
-          let url=`http://localhost:3000/Employee/${id}`;
-          axios.delete(url).then((res)=>{
+          let url=`http://localhost:3000/Employee/${myid}`;
+          axios.delete(url).then(()=>{
             alert("deleted")
-            seteditdata(res.data)
+            loadData();
           })
 
 
         }
         const edit=(myid)=>{
-          let url=`http://localhost:3000/Employee/${id}`;
+          let url=`http://localhost:3000/Employee/${myid}`;
           axios.get(url).then((res)=>{
             
             seteditdata(res.data)
@@ -45,10 +46,12 @@ const Update=()=>{
 
             seteditdata(values=>({...values,[name]:value}));
         }
-        const handlesubmit=(e)=>{
-          let url="http://localhost:3000/Employee";
-          axios.put(url,editdata).then((res)=>{
-            alert("edited data submitted ")
+        const handlesubmit=()=>{
+          
+          let url=`http://localhost:3000/Employee/${editdata.id}`;
+          axios.put(url,editdata).then(()=>{
+            alert("edited data saved ")
+            loadData();
           })
 
         }
@@ -65,12 +68,12 @@ const Update=()=>{
                     <td>{key.salary}</td>
 
                     <td>
-                      <a href="">
+                      <a href="#">
                         <img src="/public/imagess/deleteicon.png" alt="" width={"20px"} onClick={()=>{dele(key.id)}}/>
                       </a>
                     </td>
                     <td>
-                      <a href="">
+                      <a href="#">
                         <img src="/public/imagess/editicon.png" alt="" width={"20px"}  onClick={()=>{edit(key.id)}}/>
                       </a>
                     </td>
