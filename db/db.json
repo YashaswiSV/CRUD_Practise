@@ -1,0 +1,27 @@
+{
+    "Employee":[
+        
+        {
+            
+             "empno":"101",
+            "name": "John",
+            "age": "30",
+            "salary": "5000"
+      },
+      {
+          "empno":"102",
+          "name": "Sam",
+          "age": "40",
+         "salary": "15000"
+      },
+      {
+            "empno":"103",
+            "name": "Riya",
+            "age": "22",
+            "salary": "75000"
+      }
+
+
+
+    ]
+}
